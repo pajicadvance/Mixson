@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.ramixin.mixson_backport.fabric.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BootstrapMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+  

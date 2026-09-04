@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.ramixin.mixson_backport.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "NamespaceResourceManagerMixin",
+    "RegistryDataLoaderMixin",
+    "ResourceManagerImplMixinArray"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
