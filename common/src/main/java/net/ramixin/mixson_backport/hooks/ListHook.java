@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport.hooks;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 import net.ramixin.mixson_backport.util.Index;
 import net.ramixin.mixson_backport.util.MixsonUtil;
@@ -13,9 +13,9 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 @ApiStatus.Internal
-public class ListHook extends AbstractHook<Map<ResourceLocation, List<Resource>>> {
+public class ListHook extends AbstractHook<Map<Identifier, List<Resource>>> {
 
-    public ListHook(Map<ResourceLocation, List<Resource>> attachedResources) {
+    public ListHook(Map<Identifier, List<Resource>> attachedResources) {
         super(attachedResources);
     }
 
@@ -30,7 +30,7 @@ public class ListHook extends AbstractHook<Map<ResourceLocation, List<Resource>>
     @Override
     public List<Map.Entry<Index, Resource>> getMatching(Predicate<Index> predicate) {
         List<Map.Entry<Index, Resource>> result = new ArrayList<>();
-        for(Map.Entry<ResourceLocation, List<Resource>> entry : this.attachedResources.entrySet()) {
+        for(Map.Entry<Identifier, List<Resource>> entry : this.attachedResources.entrySet()) {
             for(int i = 0; i < entry.getValue().size(); i++) {
                 if(predicate.test(new Index(entry.getKey(), i))) {
                     result.add(Map.entry(new Index(MixsonUtil.removeExtension(entry.getKey()), i), entry.getValue().get(i)));

@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.ramixin.mixson_backport.entries.AbstractEntry;
 import net.ramixin.mixson_backport.entries.EventEntry;
 import net.ramixin.mixson_backport.entries.ReferenceEntry;
@@ -70,7 +70,7 @@ public class MixsonRuntime<T> {
         }
     }
 
-    protected void error(Exception e, ErrorMessageProvider errorProvider, ResourceLocation resourceId) {
+    protected void error(Exception e, ErrorMessageProvider errorProvider, Identifier resourceId) {
         switch(errorProvider.getErrorPolicy()) {
             case LOG -> errorCallback.accept(errorProvider.getRuntimeErrorMessage(resourceId), e);
             case THROW -> throw new MixsonException(errorProvider.getRuntimeErrorMessage(resourceId), e);

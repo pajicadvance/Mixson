@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.ramixin.mixson_backport.enums.ErrorPolicy;
 import net.ramixin.mixson_backport.enums.Lifetime;
 import net.ramixin.mixson_backport.util.Index;
@@ -20,7 +20,7 @@ public record MixsonEvent<T>(UUID uuid, MixsonCodec<T> codec, int priority, Life
     }
 
     @Override
-    public String getRuntimeErrorMessage(ResourceLocation resourceId) {
+    public String getRuntimeErrorMessage(Identifier resourceId) {
         return String.format("Failed to interact with %s file '%s' with event '%s'\n", codec.extensionAndDot(), resourceId, eventName);
     }
 
@@ -32,10 +32,10 @@ public record MixsonEvent<T>(UUID uuid, MixsonCodec<T> codec, int priority, Life
     public Predicate<Index> getWrappedPredicate() {
         return (index) -> {
             String ext = codec.extensionAndDot();
-            ResourceLocation id = index.id();
+            Identifier id = index.id();
             if(!id.getPath().endsWith(ext))
                 return false;
-            ResourceLocation trimmedLocation = ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - ext.length()));
+            Identifier trimmedLocation = Identifier.fromNamespaceAndPath(id.getNamespace(), id.getPath().substring(0, id.getPath().length() - ext.length()));
             return resourcePredicate.test(new Index(trimmedLocation, index.ordinal()));
         };
     }

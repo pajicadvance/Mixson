@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport.hooks;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 import net.ramixin.mixson_backport.util.Index;
 import net.ramixin.mixson_backport.util.MixsonUtil;
@@ -15,9 +15,9 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @ApiStatus.Internal
-public class StandardHook extends AbstractHook<Map<ResourceLocation, Resource>> {
+public class StandardHook extends AbstractHook<Map<Identifier, Resource>> {
 
-    public StandardHook(Map<ResourceLocation, Resource> attachedResources) {
+    public StandardHook(Map<Identifier, Resource> attachedResources) {
         super(attachedResources);
     }
 

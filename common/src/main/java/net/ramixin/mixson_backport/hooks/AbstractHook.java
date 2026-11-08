@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport.hooks;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 
 import net.ramixin.mixson_backport.util.Index;
@@ -55,7 +55,7 @@ public abstract class AbstractHook<T> {
      * <p>
      * Implementation details:
      * <p>
-     * The method is expected to return silently if there is no resource for the {@link ResourceLocation} of the given index.
+     * The method is expected to return silently if there is no resource for the {@link Identifier} of the given index.
      * The method is allowed to throw if the ordinal is out of bounds, assuming it matches one or more resources.
      */
     public abstract void delete(Index index, String fileExt);

@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport.util;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 import net.ramixin.mixson_backport.util.interfaces.MixsonCodec;
 import org.jetbrains.annotations.ApiStatus;
@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public interface MixsonUtil {
 
     static String identifierToPathString(String resourceId, String extension) {
-        ResourceLocation usable = ResourceLocation.parse(resourceId);
+        Identifier usable = Identifier.parse(resourceId);
         return usable.getNamespace() + '~' + usable.getPath().replaceFirst(String.format("\\%s", extension), "").replace("/", "-");
     }
 
@@ -21,9 +21,9 @@ public interface MixsonUtil {
         return string.replaceAll("[*|/\\\\:?<>\".]", "");
     }
 
-    static ResourceLocation removeExtension(ResourceLocation id) {
+    static Identifier removeExtension(Identifier id) {
         String stringId = id.getPath();
-        for(int i = stringId.length()-1; i > 0; i--) if(stringId.charAt(i) == '.') return ResourceLocation.fromNamespaceAndPath(id.getNamespace(), stringId.substring(0, i));
+        for(int i = stringId.length()-1; i > 0; i--) if(stringId.charAt(i) == '.') return Identifier.fromNamespaceAndPath(id.getNamespace(), stringId.substring(0, i));
         return id;
     }
 

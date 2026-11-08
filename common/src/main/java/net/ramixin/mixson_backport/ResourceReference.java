@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.ramixin.mixson_backport.enums.ErrorPolicy;
 import net.ramixin.mixson_backport.util.Index;
 import net.ramixin.mixson_backport.util.interfaces.ErrorMessageProvider;
@@ -48,7 +48,7 @@ public class ResourceReference<T> implements ErrorMessageProvider {
         return index;
     }
 
-    public ResourceLocation getResourceId() {
+    public Identifier getResourceId() {
         return index.id();
     }
 
@@ -69,7 +69,7 @@ public class ResourceReference<T> implements ErrorMessageProvider {
     }
 
     @Override
-    public String getRuntimeErrorMessage(ResourceLocation resourceId) {
+    public String getRuntimeErrorMessage(Identifier resourceId) {
         return String.format("Failed to capture %s file '%s' for reference '%s'\n", codec.extensionAndDot(), resourceId, referenceName);
     }
 

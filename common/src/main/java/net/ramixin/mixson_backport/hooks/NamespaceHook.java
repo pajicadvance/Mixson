@@ -1,6 +1,6 @@
 package net.ramixin.mixson_backport.hooks;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 import net.ramixin.mixson_backport.util.Index;
 import net.ramixin.mixson_backport.util.MixsonUtil;
@@ -15,9 +15,9 @@ import java.util.function.Predicate;
 @ApiStatus.Internal
 public class NamespaceHook extends AbstractHook<List<Resource>> {
 
-    private final ResourceLocation Identifier;
+    private final Identifier Identifier;
 
-    public NamespaceHook(List<Resource> attachedResources, ResourceLocation Identifier) {
+    public NamespaceHook(List<Resource> attachedResources, Identifier Identifier) {
         super(attachedResources);
         this.Identifier = Identifier;
     }
@@ -33,7 +33,7 @@ public class NamespaceHook extends AbstractHook<List<Resource>> {
     @Override
     public List<Map.Entry<Index, Resource>> getMatching(Predicate<Index> predicate) {
         List<Map.Entry<Index, Resource>> result = new ArrayList<>();
-        ResourceLocation withoutExtension = MixsonUtil.removeExtension(this.Identifier);
+        Identifier withoutExtension = MixsonUtil.removeExtension(this.Identifier);
         for(int i = 0; i < this.attachedResources.size(); i++) {
             if(!predicate.test(new Index(this.Identifier, i))) continue;
             result.add(Map.entry(new Index(withoutExtension, i), this.attachedResources.get(i)));
